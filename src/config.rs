@@ -9,6 +9,8 @@ use std::path::PathBuf;
 use std::result::Result;
 use yaml_rust::{Yaml, YamlLoader};
 
+use log::info;
+
 pub struct ServerConfig {
     pub port: u16,
     pub use_unix_domain_socket: bool,
@@ -90,6 +92,12 @@ pub fn load_config_file(home: &PathBuf) -> Result<Config, String> {
             return Err(err.to_string());
         }
     };
+    info!(
+        "load config file: {}",
+        config_path
+            .to_str()
+            .expect("error: can't load config file")
+    );
 
     let yaml_text = fs::read_to_string(config_path).unwrap();
     let yaml = YamlLoader::load_from_str(yaml_text.as_str()).unwrap();

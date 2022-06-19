@@ -15,4 +15,4 @@ hyper-tls = "0.4.1"
 url = "2.1.1"
 yaml-rust = "0.4"
 hyper = "0.13"
-tokio = { version = "0.2", features = ["full"] }
+tokio = { version = "1.8", features = ["full"] }
